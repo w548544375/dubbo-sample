@@ -1,0 +1,14 @@
+# Project exclude paths
+/.gradle/
+/edge-web-service/build/
+/edge-web-service/build/classes/java/main/
+/middle-service/middle-service-api/build/
+/middle-service/middle-service-api/build/classes/java/main/
+/middle-service/middle-service-provider/build/
+/middle-service/middle-service-provider/build/classes/java/main/
+/root-service/root-service-api/build/
+/root-service/root-service-api/build/classes/java/main/
+/root-service/root-service-provider/build/
+/root-service/root-service-provider/build/classes/java/main/
+/top-service/build/
+/top-service/build/classes/java/main/
