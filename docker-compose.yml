@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  zookeeper:
+    image: zookeeper
+    hostname: zk
+    ports:
+    - 2181:2181
+
+  dubbo-admin:
+    image: dubbo-admin:1.0
+    ports:
+    - 7001:7001
+    environment:
+      REGISTRY_HOST: zookeeper
+      ROOT_PASSWORD: 123456
+      GUEST_PASSWORD: 123456
+
+  root_service_provider:
+      build:
+        context: root-service/root-service-provider
+        dockerfile: Dockerfile
+      environment:
+        REGISTRY_HOST: zookeeper
+      depends_on:
+        - zookeeper
+
+  middle_service_provider:
+    build:
+      context: middle-service/middle-service-provider
+      dockerfile: Dockerfile
+    environment:
+      REGISTRY_HOST: zookeeper
+    depends_on:
+      - root_service_provider
+
+  top_service_provider:
+    build:
+      context: top-service
+      dockerfile: Dockerfile
+    environment:
+      REGISTRY_HOST: zookeeper
+    depends_on:
+      - middle_service_provider
+    ports:
+    - 9002:9002

@@ -4,4 +4,7 @@ dubbo:
   application:
     name: dubbo-top-service
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://${REGISTRY_HOST:127.0.0.1}:2181
+  protocol:
+    name: dubbo
+    port: ${PROTOCOL_PORT:20880}
